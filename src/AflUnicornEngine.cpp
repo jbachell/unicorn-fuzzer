@@ -17,33 +17,32 @@ AflUnicornEngine::AflUnicornEngine(const std::string context_dir, bool enable_tr
     // Making full path of index file
     std::string index_dir = context_dir + "/" + INDEX_FILE_NAME;
     DEBUG("Loading process context index from %s", index_dir.c_str());
-    
+
     // Read _index.json file
     json context;
     std::ifstream index_file(index_dir.c_str());
     index_file >> context;
-    
+
     if(context["arch"] == 0 || context["regs"] == 0 || \
          context["segments"] == 0)
         _error("Couldn't find infomation in indexfile.");
-    
+
     uc_err err;
-    
     // Only support ARCH_86 & MODE_32 now
     this->uc_set = _get_arch_and_mode(context["arch"]["arch"]);
     err = uc_open(uc_set.arch, uc_set.mode, &this->uc);
     uc_assert_success(err);
-    
+
     // Load the registers
     Regmap reg_map = AflUnicornEngine::_get_register_map(uc_set.mode);
-    
+
     for(auto &reg: reg_map){
         uint64_t reg_value = context["regs"][reg.first].get<uint64_t>();
-        
+
         err = uc_reg_write(this->uc, reg.second, &reg_value);
-        uc_assert_success(err);   
+        uc_assert_success(err);
     }
-        
+
     // Map the memory segment and load data
     AflUnicornEngine::_map_segments(context["segments"], context_dir);
     DEBUG("Done loading context.");
@@ -52,10 +51,10 @@ AflUnicornEngine::AflUnicornEngine(const std::string context_dir, bool enable_tr
 void AflUnicornEngine::_map_segment(const std::string name, const uint64_t address, const uint64_t size, int perms){
     uint64_t mem_start_aligned = ALIGN_PAGE_DOWN(address);
     uint64_t mem_end_aligned = ALIGN_PAGE_UP(address + size);
-    
+
     DEBUG("Mapping segment from %lx - %lx with perm=%d :%s",\
           mem_start_aligned, mem_end_aligned, perms, name.c_str());
-    
+
     if(mem_start_aligned < mem_end_aligned){
         uc_err err = uc_mem_map(this->uc, mem_start_aligned, mem_end_aligned - mem_start_aligned, perms);
         uc_assert_success(err);
@@ -67,19 +66,19 @@ void AflUnicornEngine::_map_segments(const json& segment_list, const std::string
         std::string seg_name = segment["name"].get<std::string>();
         uint64_t seg_start = segment["start"].get<uint64_t>();
         uint64_t seg_end = segment["end"].get<uint64_t>();
-        
+
         int seg_perms = (segment["permissions"]["r"].get<bool>() == true? UC_PROT_READ: 0) | \
                     (segment["permissions"]["w"].get<bool>() == true? UC_PROT_WRITE: 0) | \
                     (segment["permissions"]["x"].get<bool>() == true? UC_PROT_EXEC: 0);
-        
+
         DEBUG("Handing segment %s", seg_name.c_str());
-        
+
         // Check if segment is of an acceptable size.
         if(seg_end - seg_start > MAX_ALLOWABLE_SEG_SIZE){
             DEBUG("Skipping segment (larger than %lu) : %s", MAX_ALLOWABLE_SEG_SIZE, seg_name.c_str());
             continue;
         }
-        
+
         // Check for any overlap with existing segments. If there is, it must
         // be consolidated and merged together before mapping since Unicorn
         // doesn't allow overlapping segments.
@@ -92,11 +91,11 @@ void AflUnicornEngine::_map_segments(const json& segment_list, const std::string
         bool overlap_start = false;
         bool overlap_end = false;
         uint64_t tmp = 0;
-        
+
         for(uint32_t i=0; i<count; i++){
             uint64_t mem_start = regions[i].begin;
             uint64_t mem_end = regions[i].end + 1;
-            
+
             if(seg_start >= mem_start && seg_end < mem_end){
                 pass = true;
                 break;
@@ -112,9 +111,9 @@ void AflUnicornEngine::_map_segments(const json& segment_list, const std::string
                 break;
             }
         }
-        
+
         uc_free(regions);
-        
+
         // Map memory into the address space
         if(!pass){
             if(overlap_start)             // Partial overlap (start)
@@ -126,25 +125,25 @@ void AflUnicornEngine::_map_segments(const json& segment_list, const std::string
         }
         else
             DEBUG("Segment %s already mapped. Moving on.", seg_name.c_str());
-        
+
         // Load the content (if available)
         if(segment["content_file"].get<std::string>().length() > 0){
             std::string content_file_path = context_dir + "/" + segment["content_file"].get<std::string>();
-            
+
             std::ifstream context_file(content_file_path.c_str(), std::ios::binary);
             if(!context_file)
                 _error("Couldn't find context file. (Missing in context dir)");
-            
+
             uLong content_size = seg_end - seg_start;
             Bytef* dcompr = new Bytef[content_size];
             std::vector<Bytef> compr(std::istreambuf_iterator<char>(context_file), {}); // Read all compressed data into buffer.
-            
+
             int zerr = uncompress(dcompr, &content_size, reinterpret_cast<Bytef*>(compr.data()), compr.size());
             assert(zerr == Z_OK);
-            
+
             uc_err err = uc_mem_write(this->uc, seg_start, dcompr, content_size);
             uc_assert_success(err);
-            
+
             delete []dcompr;
         }
     }
@@ -152,28 +151,35 @@ void AflUnicornEngine::_map_segments(const json& segment_list, const std::string
 
 void AflUnicornEngine::dump_regs() const {
     Regmap reg_map = AflUnicornEngine::_get_register_map(this->uc_set.mode);
-    
+
     for(const auto &reg: reg_map){
         uint64_t reg_value;
         uc_err err = uc_reg_read(this->uc, reg.second, &reg_value);
         uc_assert_success(err);
-        
+
         uc_mode mode = this->uc_set.mode;
         switch(mode){
             case UC_MODE_32:
+            case UC_MODE_ARM:
+            case UC_MODE_THUMB:
                 printf(">>> %s : %x \n",reg.first.c_str(), static_cast<uint32_t>(reg_value));
                 break;
             case UC_MODE_64:
                 printf(">>> %s : %lx \n",reg.first.c_str(), static_cast<uint64_t>(reg_value));
                 break;
+            default:
+                printf("What happened");
         }
     }
 }
 
 uc_settings AflUnicornEngine::_get_arch_and_mode(const std::string arch_str) const{
-    static std::map<std::string, uc_settings> arch_map = {{"x86", {UC_ARCH_X86, UC_MODE_32}}};
-    
-    return arch_map[arch_str];
+    static std::map<std::string, uc_settings> arch_map = {
+      {"x86", {UC_ARCH_X86, UC_MODE_32}},
+      {"arm", {UC_ARCH_ARM, UC_MODE_ARM}}
+    };
+
+    return arch_map["arm"];
 }
 
 std::map<std::string, int> AflUnicornEngine::_get_register_map(uc_mode mode) const{
@@ -192,7 +198,26 @@ std::map<std::string, int> AflUnicornEngine::_get_register_map(uc_mode mode) con
         // Segment registers are removed
         // Set a segment registers in another function
     }
-        
+    else if(mode == UC_MODE_ARM || mode == UC_MODE_THUMB){
+        r_map["r0"] = UC_ARM_REG_R0;
+        r_map["r1"] = UC_ARM_REG_R1;
+        r_map["r2"] = UC_ARM_REG_R2;
+        r_map["r3"] = UC_ARM_REG_R3;
+        r_map["r4"] = UC_ARM_REG_R4;
+        r_map["r5"] = UC_ARM_REG_R5;
+        r_map["r6"] = UC_ARM_REG_R6;
+        r_map["r7"] = UC_ARM_REG_R7;
+        r_map["r8"] = UC_ARM_REG_R8;
+        r_map["r9"] = UC_ARM_REG_R9;
+        r_map["r10"] = UC_ARM_REG_R10;
+        r_map["r11"] = UC_ARM_REG_R11;
+        r_map["r12"] = UC_ARM_REG_R12;
+        r_map["pc"] = UC_ARM_REG_PC;
+        r_map["sp"] = UC_ARM_REG_SP;
+        r_map["lr"] = UC_ARM_REG_LR;
+        r_map["cpsr"] = UC_ARM_REG_CPSR;
+    }
+
     return r_map;
 }
 
@@ -200,7 +225,7 @@ void AflUnicornEngine::force_crash(uc_err err) const{
     static std::vector<uc_err> mem_errors = {UC_ERR_READ_UNMAPPED, UC_ERR_READ_PROT, UC_ERR_READ_UNALIGNED, \
                                          UC_ERR_WRITE_UNMAPPED, UC_ERR_WRITE_PROT, UC_ERR_WRITE_UNALIGNED, \
                                          UC_ERR_FETCH_UNMAPPED, UC_ERR_FETCH_PROT, UC_ERR_FETCH_UNALIGNED};
-    
+
     if(std::find(mem_errors.begin(), mem_errors.end(), err) != mem_errors.end())
         std::raise(SIGSEGV);
     else if(err == UC_ERR_INSN_INVALID)
