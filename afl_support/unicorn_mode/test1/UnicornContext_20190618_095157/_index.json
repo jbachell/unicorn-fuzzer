@@ -1,0 +1,587 @@
+{
+    "segments": [
+        {
+            "start": 2863308800, 
+            "content_file": "e751b9c7c3bce667ec4b66bd8320115d.bin", 
+            "end": 2863312896, 
+            "name": "/data/local/tmp/first_afl_unicorn", 
+            "permissions": {
+                "x": true, 
+                "r": true, 
+                "w": false
+            }
+        }, 
+        {
+            "start": 2863312896, 
+            "content_file": "3db0a7331205fc23162c018eec0fb482.bin", 
+            "end": 2863316992, 
+            "name": "/data/local/tmp/first_afl_unicorn", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": false
+            }
+        }, 
+        {
+            "start": 2863316992, 
+            "content_file": "ffe83bf78dc1a55a18d697391ab30b7b.bin", 
+            "end": 2863321088, 
+            "name": "[heap]", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": true
+            }
+        }, 
+        {
+            "start": 4148596736, 
+            "content_file": "e0642b6790ea3aceb4ef01c5ed3a6834.bin", 
+            "end": 4148613120, 
+            "name": "/system/lib/libnetd_client.so", 
+            "permissions": {
+                "x": true, 
+                "r": true, 
+                "w": false
+            }
+        }, 
+        {
+            "start": 4148613120, 
+            "content_file": "0769202ccf44a740df64ae31a1341ad0.bin", 
+            "end": 4148617216, 
+            "name": "/system/lib/libnetd_client.so", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": false
+            }
+        }, 
+        {
+            "start": 4148617216, 
+            "content_file": "34282cc936f94d891ab32969a339b9e9.bin", 
+            "end": 4148621312, 
+            "name": "/system/lib/libnetd_client.so", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": true
+            }
+        }, 
+        {
+            "start": 4148621312, 
+            "content_file": "ec59dd5ca51710dd1dac65fdf2cdfe0a.bin", 
+            "end": 4148748288, 
+            "name": "/system/lib/libm.so", 
+            "permissions": {
+                "x": true, 
+                "r": true, 
+                "w": false
+            }
+        }, 
+        {
+            "start": 4148748288, 
+            "content_file": "d9c8ccb4a1b569e012dbf1a723bc7685.bin", 
+            "end": 4148752384, 
+            "name": "/system/lib/libm.so", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": false
+            }
+        }, 
+        {
+            "start": 4148752384, 
+            "content_file": "af69b39fa24485cf5c922944ebdae9af.bin", 
+            "end": 4148756480, 
+            "name": "/system/lib/libm.so", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": true
+            }
+        }, 
+        {
+            "start": 4148756480, 
+            "content_file": "764af73487a3576acf9cff252425e5ce.bin", 
+            "end": 4149317632, 
+            "name": "/system/lib/libc++.so", 
+            "permissions": {
+                "x": true, 
+                "r": true, 
+                "w": false
+            }
+        }, 
+        {
+            "start": 4149317632, 
+            "content_file": "", 
+            "end": 4149321728, 
+            "name": "", 
+            "permissions": {
+                "x": false, 
+                "r": false, 
+                "w": false
+            }
+        }, 
+        {
+            "start": 4149321728, 
+            "content_file": "603457becb96219935ac28dedbeb4a0d.bin", 
+            "end": 4149338112, 
+            "name": "/system/lib/libc++.so", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": false
+            }
+        }, 
+        {
+            "start": 4149338112, 
+            "content_file": "51e588c3f6d52d5ecbd7ca81944e8283.bin", 
+            "end": 4149342208, 
+            "name": "/system/lib/libc++.so", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": true
+            }
+        }, 
+        {
+            "start": 4149342208, 
+            "content_file": "eb860fbab1be1c1f4521e030283b546b.bin", 
+            "end": 4149346304, 
+            "name": "[anon:.bss]", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": true
+            }
+        }, 
+        {
+            "start": 4149346304, 
+            "content_file": "6449816bbaa35c4bf4d4948c06bb1ee7.bin", 
+            "end": 4149542912, 
+            "name": "/dev/__properties__/u:object_r:default_prop:s0", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": false
+            }
+        }, 
+        {
+            "start": 4149542912, 
+            "content_file": "d089fb4f39c174c23b502c8fa78dd691.bin", 
+            "end": 4149739520, 
+            "name": "/dev/__properties__/properties_serial", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": false
+            }
+        }, 
+        {
+            "start": 4149739520, 
+            "content_file": "f619096e09ff2d7c2e64b1e1ddb3e5f5.bin", 
+            "end": 4150788096, 
+            "name": "[anon:libc_malloc]", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": true
+            }
+        }, 
+        {
+            "start": 4150935552, 
+            "content_file": "d08dcb18bf41f4ff8d95ebcbdf91b34f.bin", 
+            "end": 4151480320, 
+            "name": "/system/lib/libc.so", 
+            "permissions": {
+                "x": true, 
+                "r": true, 
+                "w": false
+            }
+        }, 
+        {
+            "start": 4151480320, 
+            "content_file": "", 
+            "end": 4151484416, 
+            "name": "", 
+            "permissions": {
+                "x": false, 
+                "r": false, 
+                "w": false
+            }
+        }, 
+        {
+            "start": 4151484416, 
+            "content_file": "16541876890897475f8587d6747cb1d2.bin", 
+            "end": 4151500800, 
+            "name": "/system/lib/libc.so", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": false
+            }
+        }, 
+        {
+            "start": 4151500800, 
+            "content_file": "7d60f321fe0b39cfd3f2bd1c10b6fd3d.bin", 
+            "end": 4151508992, 
+            "name": "/system/lib/libc.so", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": true
+            }
+        }, 
+        {
+            "start": 4151508992, 
+            "content_file": "75f6ee3cc5f543c6bcb3bf40e5750682.bin", 
+            "end": 4151513088, 
+            "name": "[anon:.bss]", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": true
+            }
+        }, 
+        {
+            "start": 4151513088, 
+            "content_file": "29156b196bdb68752691569cb10a4cee.bin", 
+            "end": 4151517184, 
+            "name": "[anon:.bss]", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": false
+            }
+        }, 
+        {
+            "start": 4151517184, 
+            "content_file": "dee470ff3e1a4e441456f68937918fb6.bin", 
+            "end": 4151541760, 
+            "name": "[anon:.bss]", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": true
+            }
+        }, 
+        {
+            "start": 4151586816, 
+            "content_file": "d089fb4f39c174c23b502c8fa78dd691.bin", 
+            "end": 4151783424, 
+            "name": "/dev/__properties__/properties_serial", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": false
+            }
+        }, 
+        {
+            "start": 4151783424, 
+            "content_file": "056e15aebe9a9c45973282321b47a38e.bin", 
+            "end": 4151791616, 
+            "name": "[anon:linker_alloc_vector]", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": true
+            }
+        }, 
+        {
+            "start": 4151791616, 
+            "content_file": "89f558a63d397edbbe9fc1e649b6225f.bin", 
+            "end": 4151795712, 
+            "name": "[anon:atexit handlers]", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": false
+            }
+        }, 
+        {
+            "start": 4151795712, 
+            "content_file": "dfbe650f8474ee18d156dfe88ed4087d.bin", 
+            "end": 4151799808, 
+            "name": "[anon:linker_alloc_vector]", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": true
+            }
+        }, 
+        {
+            "start": 4151799808, 
+            "content_file": "2e86a7d312324c55d7485b77f40a0ab2.bin", 
+            "end": 4151803904, 
+            "name": "[anon:linker_alloc]", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": true
+            }
+        }, 
+        {
+            "start": 4151803904, 
+            "content_file": "20c4e0ead799042ef8762d954db67a61.bin", 
+            "end": 4151808000, 
+            "name": "[anon:linker_alloc_vector]", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": true
+            }
+        }, 
+        {
+            "start": 4151808000, 
+            "content_file": "1f30d55f17c283d25237b1d02eaa55f1.bin", 
+            "end": 4151812096, 
+            "name": "[anon:linker_alloc_small_objects]", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": true
+            }
+        }, 
+        {
+            "start": 4151812096, 
+            "content_file": "131bd5bcd0428277af446613ffd8400a.bin", 
+            "end": 4151816192, 
+            "name": "[anon:linker_alloc_vector]", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": true
+            }
+        }, 
+        {
+            "start": 4151816192, 
+            "content_file": "5b605585251494db7b77eb32fb35c8db.bin", 
+            "end": 4151820288, 
+            "name": "[anon:linker_alloc_small_objects]", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": true
+            }
+        }, 
+        {
+            "start": 4151820288, 
+            "content_file": "af10b9e67b5d6e871b18ed9a788193df.bin", 
+            "end": 4151824384, 
+            "name": "[anon:linker_alloc]", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": true
+            }
+        }, 
+        {
+            "start": 4151824384, 
+            "content_file": "dee8902146bfc49a01b13bf790224534.bin", 
+            "end": 4151828480, 
+            "name": "[anon:linker_alloc]", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": false
+            }
+        }, 
+        {
+            "start": 4151828480, 
+            "content_file": "803043a8b421bc6b94a0d94a7530e01e.bin", 
+            "end": 4151832576, 
+            "name": "[anon:linker_alloc_lob]", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": true
+            }
+        }, 
+        {
+            "start": 4151832576, 
+            "content_file": "112c342bb8c39c215905397212e3dc7c.bin", 
+            "end": 4151836672, 
+            "name": "[anon:linker_alloc]", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": false
+            }
+        }, 
+        {
+            "start": 4151836672, 
+            "content_file": "b09293512df2abb199bf9db74decb20e.bin", 
+            "end": 4151853056, 
+            "name": "[anon:linker_alloc_small_objects]", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": true
+            }
+        }, 
+        {
+            "start": 4151853056, 
+            "content_file": "c27a0a032cd86f69ccf354f406a6278b.bin", 
+            "end": 4151857152, 
+            "name": "[anon:arc4random _rsx structure]", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": true
+            }
+        }, 
+        {
+            "start": 4151857152, 
+            "content_file": "d6e79386904fb296f119e077a0085559.bin", 
+            "end": 4151861248, 
+            "name": "[anon:arc4random _rs structure]", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": true
+            }
+        }, 
+        {
+            "start": 4151861248, 
+            "content_file": "c894d954277c8ba09b3c7e8620e2f89b.bin", 
+            "end": 4151865344, 
+            "name": "[anon:atexit handlers]", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": false
+            }
+        }, 
+        {
+            "start": 4151865344, 
+            "content_file": "", 
+            "end": 4151869440, 
+            "name": "[anon:thread signal stack guard page]", 
+            "permissions": {
+                "x": false, 
+                "r": false, 
+                "w": false
+            }
+        }, 
+        {
+            "start": 4151869440, 
+            "content_file": "56d64e639499acc923b04bf7f1472d02.bin", 
+            "end": 4151877632, 
+            "name": "[anon:thread signal stack]", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": true
+            }
+        }, 
+        {
+            "start": 4151877632, 
+            "content_file": "d79b43064e110cd38bc26754f6a3788f.bin", 
+            "end": 4152266752, 
+            "name": "/system/bin/linker", 
+            "permissions": {
+                "x": true, 
+                "r": true, 
+                "w": false
+            }
+        }, 
+        {
+            "start": 4152266752, 
+            "content_file": "50d29e7eefcbfdb730b7cb320e9ef586.bin", 
+            "end": 4152274944, 
+            "name": "/system/bin/linker", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": false
+            }
+        }, 
+        {
+            "start": 4152274944, 
+            "content_file": "c1f98dbc2fe8c54440a47ea79c286bc1.bin", 
+            "end": 4152279040, 
+            "name": "/system/bin/linker", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": true
+            }
+        }, 
+        {
+            "start": 4152279040, 
+            "content_file": "47bb4c3cb227f0b27b4023e825a6f32a.bin", 
+            "end": 4152287232, 
+            "name": "", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": true
+            }
+        }, 
+        {
+            "start": 4152287232, 
+            "content_file": "29156b196bdb68752691569cb10a4cee.bin", 
+            "end": 4152291328, 
+            "name": "", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": false
+            }
+        }, 
+        {
+            "start": 4152291328, 
+            "content_file": "c0bf4bfe80fed7d193f50f652bf70125.bin", 
+            "end": 4152299520, 
+            "name": "", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": true
+            }
+        }, 
+        {
+            "start": 4294766592, 
+            "content_file": "69645abd45a48c7d57fb7ed5d8e47a07.bin", 
+            "end": 4294901760, 
+            "name": "[stack]", 
+            "permissions": {
+                "x": false, 
+                "r": true, 
+                "w": true
+            }
+        }, 
+        {
+            "start": 4294901760, 
+            "content_file": "01d25c96b60d7541dfcee2adef9e9754.bin", 
+            "end": 4294905856, 
+            "name": "[vectors]", 
+            "permissions": {
+                "x": true, 
+                "r": true, 
+                "w": false
+            }
+        }
+    ], 
+    "arch": {
+        "arch": "armle"
+    }, 
+    "regs": {
+        "r4": 2863309928, 
+        "r5": 4294899764, 
+        "r6": 3, 
+        "r7": 4294899780, 
+        "r0": 4149846360, 
+        "r1": 0, 
+        "r2": 0, 
+        "r3": 4149753020, 
+        "r11": 4294899704, 
+        "r8": 0, 
+        "r9": 0, 
+        "pc": 2863310056, 
+        "lr": 18446744072277894376, 
+        "r12": 0, 
+        "r10": 0, 
+        "cpsr": 1074724880, 
+        "sp": 4294899672
+    }
+}
