@@ -37,8 +37,10 @@ int main(int argc, char* argv[]){
 
 
   //Execute 1 instruction for fork???
-  uc_emu_start(afl.get_uc(), start_address, end_address, 0, 1);
-
+  uc_err e = uc_emu_start(afl.get_uc(), start_address, 0, 0, 1);
+  if(e){
+    _error("ERROR: Failed to execute single instruction.");
+  }
 
   printf("Loading input from %s\n", argv[2]);
   //ifstream input;
@@ -82,17 +84,16 @@ int main(int argc, char* argv[]){
     afl.force_crash(err);
     return 0;
   }*/
-
-  uint64_t eip = start_address;
+  uint32_t eip = start_address;
      while(eip != end_address){
          uc_err err = uc_emu_start(afl.get_uc(), eip, end_address, 0, 0);
          if(err){
              afl.dump_regs();
              afl.force_crash(err);
-             return 0;
+             //return 0;
          }
          uc_reg_read(afl.get_uc(), UC_ARM_REG_PC, &eip);
-         eip -= 4;
+         //eip -= 4;
        }
 
   afl.dump_regs();
